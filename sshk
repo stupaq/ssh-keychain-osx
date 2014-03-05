@@ -1,0 +1,11 @@
+#!/bin/bash
+
+label="$1"
+credentials=`security find-generic-password -gl $label 2>&1`
+password=`echo "$credentials" | sed -n 's/.*password: "\(.*\)".*/\1/p'`
+destination=`echo "$credentials" | sed -n 's/.*"svce"<blob>="\(.*\)".*/\1/p'`
+login=`echo "$credentials" | sed -n 's/.*"acct"<blob>="\(.*\)".*/\1/p'`
+
+shift 1
+sshpass -p "$password" ssh "$login@$destination" "$@"
+
