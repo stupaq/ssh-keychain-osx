@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -ne 1 ]]; then
+  echo "Provide label of keychain item."
+  exit 1
+fi
+
 label="$1"
 credentials=`security find-generic-password -gl $label 2>&1`
 password=`echo "$credentials" | sed -n 's/.*password: "\(.*\)".*/\1/p'`
