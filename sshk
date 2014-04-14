@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $# -ne 1 ]]; then
+if [[ $# -lt 1 ]]; then
   echo "Provide label of keychain item."
   exit 1
 fi
