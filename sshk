@@ -12,5 +12,5 @@ destination=`echo "$credentials" | sed -n 's/.*"svce"<blob>="\(.*\)".*/\1/p'`
 login=`echo "$credentials" | sed -n 's/.*"acct"<blob>="\(.*\)".*/\1/p'`
 
 shift 1
-sshpass -p "$password" ssh "$login@$destination" "$@"
+SSHPASS="$password" sshpass -e ssh "$login@$destination" "$@"
 
